@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Compress Images Online</title>
+      <link rel="stylesheet" href="assets/css/fonts.css">
+      <link rel="stylesheet" href="assets/css/style.css?v=003">
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <!-- Mian Wrapper and Header Start -->
+      <div class="first-section">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <a href="#"><img src="assets/images/first-logo.png" width="60%" /></a>  
+               </div>
+               <div class="col-md-9">
+                  <nav>
+                     <div class="hamburger">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                        <div class="line3"></div>
+                     </div>
+                     <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Convert JPEG</a></li>
+                        <li><a href="#">Convert PNG</a></li>
+                        <li><a href="#">Convert GIF</a></li>
+                        <li><a href="#">Convert PDF</a></li>
+                        <li><a href="#">Convert WebP</a></li>
+                        <li><a href="#">Blog</a></li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="content-section">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1 class="text-center">Compress IMAGE</h1>
+                  <p>Select up to <b>20 JPG or JPEG</b> images from you device. Or drag files to the drop area. Wait for the compression to finish. If you need more control over the JPEG compression quality please use thumbnails to activate the manual mode. Download compressed images either separately or get them all, grouped in a <b>ZIP</b> archive.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="image-section">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <main class="page__main" id="app" style="height: auto !important;">
+                     <ul class="services">
+                        <li class="services__item">
+                           <input name="switch" id="switch-compressjpeg" value="#" type="radio" class="services__input">
+                           <label for="switch-compressjpeg" class="services__label" id="jpeg-wep">JPEG</label>
+                        </li>
+                        <li class="services__item">
+                           <input name="switch" id="switch-compresspng" value="#" type="radio" class="services__input">
+                           <label for="switch-compresspng" class="services__label" id="jpeg-wep">PNG</label>
+                        </li>
+                        <li class="services__item">
+                           <input name="switch" id="switch-compressgif" value="#" type="radio" class="services__input">
+                           <label for="switch-compressgif" class="services__label" id="jpeg-wep">GIF</label>
+                        </li>
+                        <li class="services__item">
+                           <input name="switch" id="switch-shrinkpdf" value="#" type="radio" class="services__input">
+                           <label for="switch-shrinkpdf" class="services__label" id="jpeg-wep">PDF</label>
+                        </li>
+                        <li class="services__item">
+                           <input name="switch" id="switch-shrinkwebp" value="#" type="radio" class="services__input">
+                           <label for="switch-shrinkwebp" class="services__label" id="jpeg-wep">WebP</label>
+                        </li>
+                     </ul>
+                     <script>
+                        (function(){
+                          const moveActiveLabel = false,
+                          tools = [
+                            ["svgconverter",     "#",      "SVG Converter"],
+                            ["compressjpeg",     "#",      "JPEG"],
+                            ["compresspng",      "#",       "PNG"],
+                            ["compressgif",      "#",       "GIF"],
+                            ["shrinkpdf",        "#",         "PDF"],
+                            ["shrinkwebp",        "#",         "WebP"],
+                          ],
+                          newLabel = "svgconverter",
+                          postfix = "/en",
+                          parent = document.querySelector(".services");
+                          if(!parent){
+                            return;
+                          }
+                          const firstElem = parent.firstElementChild; 
+                          if(!firstElem){
+                            return;
+                          }
+                          const template = firstElem.cloneNode(true);
+                          createLinks();
+                          parent.addEventListener("change", function(event){
+                            const href = event.target.value;
+                            if(href){
+                              window.location.href = href;
+                            }
+                          });
+                          function createLinks(){
+                            parent.innerHTML = "";
+                            for(let index in tools){
+                              let tool = tools[index],
+                                elem = template.cloneNode(true),
+                                input = elem.querySelector(".services__input"),
+                                label = elem.querySelector(".services__label");
+                              input.value = tool[1]+postfix;
+                              input.id = "switch-"+tool[0];
+                              label.innerText = tool[2];
+                              label.setAttribute("for", "switch-"+tool[0]);
+                              if(tool[0] == "compressjpeg"){
+                                input.checked = true;
+                                if(!moveActiveLabel && tool[0] == newLabel){
+                                  elem.classList.add("services__item_align-right");
+                                }
+                              } else if(tool[0] == newLabel){
+                                elem.classList.add("services__item_new");
+                              }
+                              parent.appendChild(elem);
+                            }
+                            const checked = parent.querySelector("[type=radio]:checked"),
+                              active = checked && checked.closest(".services__item");
+                            if(moveActiveLabel && active && active!=parent.children[0]){
+                              parent.insertBefore(active, parent.children[0]);
+                            }
+                            const newElem = parent.querySelector(".services__item_new,.services__item_align-right");
+                            newElem && parent.appendChild(newElem);
+                          }
+                        })();
+                     </script>
+                     <section class="files page__files" style="height: auto !important;">
+                        <input id="fileSelector" type="file" class="files__input-files" multiple="">
+                        <div class="files__buttons">
+                           <label aria-label="Upload files" class="button files__button files__button_mr" for="fileSelector" tabindex="0">
+                              <svg aria-hidden="true" class="button__icon" viewBox="0 0 16 16" width="18" height="18">
+                                 <use xlink:href="#browse"></use>
+                              </svg>
+                              <span class="button__text">Upload Files</span>
+                           </label>
+                           <button aria-label="Clear Queue" class="button files__button button_secondary" disabled="">
+                              <svg aria-hidden="true" class="button__icon" viewBox="0 0 16 16" width="18" height="18">
+                                 <use xlink:href="#clear"></use>
+                              </svg>
+                              <span class="button__text">Clear Queue</span>
+                           </button>
+                        </div>
+                        <div class="files__list-outer">
+                           <button aria-hidden="true" disabled="" class="scroll-button files__scroll-button files__scroll-button_prev">
+                              <svg class="scroll-button__icon scroll-button__icon_left" viewBox="0 0 8 16" width="8" height="16">
+                                 <use xlink:href="#arrow-right"></use>
+                              </svg>
+                           </button>
+                           <div class="files__list" id="filesScroll">
+                              <ul class="files__list-inner" id="filesSlot"></ul>
+                           </div>
+                           <div class="files__drop-caption drop-caption">
+                              <svg class="drop-caption__border" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                                 <defs>
+                                    <clipPath id="rectMask">
+                                       <rect fill="#000" x="0" y="0" width="100%" height="100%" rx="10" ry="10"></rect>
+                                    </clipPath>
+                                 </defs>
+                                 <rect width="100%" height="100%" rx="10" ry="10" fill="none" clip-path="url(#rectMask)"></rect>
+                              </svg>
+                              <p class="drop-caption__text" id="nope-wep">Drop your JPEG,PNG,GIF,PDF or WEBP files here!</p>
+                              <p class="drop-caption__text" id="nope-wep-first">Up to 20 images, max 5 MB each.</p>
+                           </div>
+                           <button aria-hidden="true" disabled="" class="scroll-button files__scroll-button files__scroll-button_next">
+                              <svg class="scroll-button__icon scroll-button__icon_right" viewBox="0 0 8 16" width="8" height="16">
+                                 <use xlink:href="#arrow-right"></use>
+                              </svg>
+                           </button>
+                        </div>
+                        <div class="files__buttons">
+                           <button aria-label="Download all" class="button files__button button_dark" disabled="">
+                              <svg aria-hidden="true" class="button__icon" viewBox="0 0 16 16" width="18" height="18">
+                                 <use xlink:href="#download"></use>
+                              </svg>
+                              <span class="button__counter">0</span>
+                              <span class="button__text">Download All</span>
+                           </button>
+                        </div>
+                     </section>
+                     <section class="settings page__settings page__settings_hidden" id="settingsSlot">
+                        <div>
+                           <p class="settings__title">
+                              <span class="settings__title-text">undefined</span>
+                              <span class="settings__loader-outer"><span class="loader settings__loader"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+                           </p>
+                           <div class="settings__content">
+                              <div class="settings__compare-outer">
+                                 <div class="image-info settings__image-info">
+                                    <p class="image-info__text"><span class="image-info__title">Original:</span> <span class="image-info__bold">NaN undefined</span></p>
+                                    <p class="image-info__text"><span class="image-info__title">Compressed:</span> <span class="image-info__bold">NaN undefined (NaN<span class="percent-symbol">%</span>)</span></p>
+                                 </div>
+                                 <div class="compare settings__compare">
+                                    <canvas class="compare__canvas" id="canvas" width="970" height="154"></canvas>
+                                    <span class="thumb compare__thumb" id="thumb" style="transform: translate(485px, 0px);">
+                                       <span class="thumb__button">
+                                          <svg class="thumb__icon thumb__icon_left" viewBox="0 0 8 16" width="8" height="16">
+                                             <use xlink:href="#arrow-right"></use>
+                                          </svg>
+                                          <svg class="thumb__icon thumb__icon_right" viewBox="0 0 8 16" width="8" height="16">
+                                             <use xlink:href="#arrow-right"></use>
+                                          </svg>
+                                       </span>
+                                    </span>
+                                 </div>
+                              </div>
+                              <div class="settings__quality-outer">
+                                 <div class="quality settings__quality">
+                                    <label for="quality" class="quality__field">
+                                       <p class="quality__title">
+                                          <span class="quality__title-text">Quality</span>
+                                       </p>
+                                    </label>
+                                    <input id="quality" type="text" class="quality__input" maxlength="5" autocomplete="off" disabled="">
+                                    <div class="quality__range-outer">
+                                       <input type="range" step="1" aria-label="Quality" class="quality__range-input" min="0" max="100" disabled="" style="left: 32px; width: 207px;">
+                                    </div>
+                                    <button class="button quality__button" disabled="">
+                                    <span class="button__text">Apply</span>
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="frameControlSlot">
+                              <div class="frame-counter settings__frame-counter settings__frame-counter_hidden">
+                                 <button class="button button_min frame-counter__button" disabled="">
+                                 <span class="button__text">-10</span>
+                                 </button>
+                                 <button class="button button_min frame-counter__button" disabled="">
+                                 <span class="button__text">-1</span>
+                                 </button>
+                                 <label for="counter" class="frame-counter__label frame-counter__label_disabled">
+                                 <input id="counter" type="text" class="frame-counter__input" autocomplete="off" maxlength="1" style="width:12px" disabled="">
+                                 <span class="frame-counter__label-all">0</span>
+                                 </label>
+                                 <button class="button button_min frame-counter__button" disabled="">
+                                 <span class="button__text">+1</span>
+                                 </button>
+                                 <button class="button button_min frame-counter__button" disabled="">
+                                 <span class="button__text">+10</span>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </main>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="before-after">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h3 class="text-center">Before</h3>
+                  <center><img src="assets/images/1.jpg" width="80%" class="text-center" /></center>
+               </div>
+               <div class="col-md-6">
+                  <h3 class="text-center">After</h3>
+                  <center><img src="assets/images/1.jpg" width="80%" class="text-center" /></center>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <p>All uploaded data is deleted after 1 hour.</p>
+               </div>
+               <div class="col-md-6">
+                  <a href="#" class="fa fa-facebook" style="margin-left: 266px;"></a>
+                  <a href="#" class="fa fa-twitter"></a>
+                  <a href="#" class="fa fa-google"></a>
+                  <a href="#" class="fa fa-linkedin"></a>
+                  <a href="#" class="fa fa-youtube"></a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- JS Start -->
+      <script src="assets/js/jquery-3.5.1.min.js"></script>
+      <script src="assets/js/custom.js"></script>
+      <script type="text/javascript">
+         const hamburger = document.querySelector(".hamburger");
+         const navLinks = document.querySelector(".nav-links");
+         const links = document.querySelectorAll(".nav-links li");
+         
+         hamburger.addEventListener('click', ()=>{
+         //Animate Links
+         navLinks.classList.toggle("open");
+         links.forEach(link => {
+         link.classList.toggle("fade");
+         });
+         
+         //Hamburger Animation
+         hamburger.classList.toggle("toggle");
+         });
+      </script>
+   </body>
+</html>
